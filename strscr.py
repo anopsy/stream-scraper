@@ -1,11 +1,9 @@
-import json
-import time
+
 import requests
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from browsermobproxy import Server
-import datetime
-import sys
+
 
 url = "https://surfweer.nl/surf/webcam/"
 
@@ -17,7 +15,6 @@ proxy = server.create_proxy()
 # selenium arguments
 options = webdriver.ChromeOptions()
 options.add_argument('headless')
-options.add_argument("--window-size=1920,1080");
 options.add_argument("--proxy-server={0}".format(proxy.proxy))
 
 caps = DesiredCapabilities.CHROME.copy()
@@ -28,7 +25,6 @@ proxy.new_har(ref=None,options={'captureHeaders': True,'captureContent':True,'ca
               
 driver = webdriver.Chrome('chromedriver',options=options,desired_capabilities=caps)
 driver.get(url)
-#filename = datetime.datetime.now().strftime("%Y-%m-%d %H-%M-%S")+'.mpeg'
 
 fetched = []
 i=0
